@@ -4,5 +4,6 @@ module.exports =  {
     sourceFolder: "src",
     entryFile: "main.js",
     distFolder: "dist",
-    bundleFile: "bundle.js"
+    bundleFile: "bundle.js",
+    devPort: 3000
 }
