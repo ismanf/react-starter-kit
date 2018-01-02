@@ -1,8 +1,14 @@
 let path = require('path'),
+    webpack = require('webpack'),
     config = require('./project.config')
 
 let wpConfig = {
-    entry: path.join(__dirname, config.sourceFolder, config.entryFile),
+    entry: [
+        'react-hot-loader/patch',
+        'webpack-dev-server/client?http://localhost:3000',
+        'webpack/hot/only-dev-server',
+        path.join(__dirname, config.sourceFolder, config.entryFile)
+    ],
     output: {
         path: path.join(__dirname, config.distFolder),
         filename: config.bundleFile
@@ -15,16 +21,20 @@ let wpConfig = {
                 loader: 'babel-loader',
                 query: {
                     presets: ['es2015', 'react'],
-                    plugins: ['transform-class-properties']
+                    plugins: ['react-hot-loader/babel', 'transform-class-properties']
                 }
             },
         ]
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
     devServer: {
         contentBase: `./${config.distFolder}`,
         historyApiFallback: true,
         inline: true,
-        port: config.devPort
+        port: config.devPort,
+        hot: true
     }
 }
 
