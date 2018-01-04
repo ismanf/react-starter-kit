@@ -1,18 +1,18 @@
 import React from 'react'
+import Jumbotron from '../common/Jumbotron'
 
-const Home = (props) => {
-    const {path, title} = props
+const dummy = {
+    jtitle='Home Component!',
+    jtext='This is home page...'
+}
+
+const Home = () => {
 
     return (
-        <li className='nav-item'>
-            <Link className='nav-link' to={path}>{title}</Link>
-        </li>
+        <div className='container'>
+            <Jumbotron title={dummy.jtitle} text={dummy.jtext} />
+        </div>
     )
 }
 
-NavItem.propTypes = {
-    path: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
-}
-
-export default NavItem
+export default Home
