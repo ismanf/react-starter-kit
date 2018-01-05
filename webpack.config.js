@@ -10,8 +10,9 @@ let wpConfig = {
         path.join(__dirname, config.sourceFolder, config.entryFile)
     ],
     output: {
-        path: path.join(__dirname, config.distFolder),
-        filename: config.bundleFile
+        path: path.join(__dirname, config.publicFolder,  config.distFolder),
+        filename: config.bundleFile,
+        publicPath: `/${config.distFolder}/`
     },
     module: {
         loaders: [
@@ -30,7 +31,8 @@ let wpConfig = {
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        contentBase: `./${config.distFolder}`,
+        contentBase: path.join(__dirname, config.distFolder),
+        publicPath:`/${config.publicFolder}/`,
         historyApiFallback: true,
         inline: true,
         port: config.devPort,
