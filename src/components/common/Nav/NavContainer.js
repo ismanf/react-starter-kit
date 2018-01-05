@@ -14,7 +14,7 @@ const NavContainer = (props) => {
 }
 
 NavContainer.propTypes = {
-    children: PropTypes.array.isRequired
+    children: PropTypes.any
 }
 
 export default NavContainer

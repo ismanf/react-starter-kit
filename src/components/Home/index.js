@@ -2,8 +2,8 @@ import React from 'react'
 import Jumbotron from '../common/Jumbotron'
 
 const dummy = {
-    jtitle='Home Component!',
-    jtext='This is home page...'
+    jtitle: 'Home Component!',
+    jtext: 'This is home page...'
 }
 
 const Home = () => {

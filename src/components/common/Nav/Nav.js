@@ -8,9 +8,7 @@ const Nav = (props) => {
     return (
         <ul className='navbar-nav mr-auto'>
             {
-                items.map((e, i) => {
-                    <NavIem key={i} path={e.path} title={e.title} />
-                })
+                items.map((e, i) => <NavItem key={i} path={e.path} title={e.title} />)
             }
         </ul>
     )

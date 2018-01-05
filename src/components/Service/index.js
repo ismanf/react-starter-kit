@@ -1,10 +1,17 @@
 import React from 'react'
-import {Card,CardBody,CardFooter} from '../common/Card'
+import { Card, CardBody, CardFooter } from '../common/Card'
+import Jumbotron from '../common/Jumbotron'
 
-const dummy = [{
-    jtitle='Home Component!',
-    jtext='This is home page...'
-}]
+const dummy = {
+    cards: [{
+        title: 'Service one!',
+        text: 'This is the best service ever...'
+    }],
+    jumbo: {
+        title: 'Service page!',
+        text: 'Look at this beautifull services...'
+    }
+}
 
 const Service = () => {
 
@@ -17,7 +24,7 @@ const Service = () => {
                         <p className='card-text'>{card.text}</p>
                     </CardBody>
                     <CardFooter>
-                        <a href="#" className='btn btn-primary'>Find Out More!</a>
+                        <button className='btn btn-primary'>Find Out More!</button>
                     </CardFooter>
                 </Card>
             </div>
@@ -26,9 +33,10 @@ const Service = () => {
 
     return (
         <div className='container'>
+            <Jumbotron title={dummy.jumbo.title} text={dummy.jumbo.text} />
             <div className='row text-center'>
                 {
-                    dummy.map((e, i) => renderCard(e, i))
+                    dummy.cards.map((e, i) => renderCard(e, i))
                 }
             </div>
         </div>
