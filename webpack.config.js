@@ -1,21 +1,34 @@
 let path = require('path'),
     webpack = require('webpack'),
-    config = require('./project.config')
+    HtmlWebPackPlugin = require('html-webpack-plugin')
+
+const PATHS = {
+    src: path.join(__dirname, 'src'),
+    dist: path.join(__dirname, 'dist'),
+    main: path.join(__dirname, 'src/main.js')
+}
 
 let wpConfig = {
     entry: [
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
-        path.join(__dirname, config.sourceFolder, config.entryFile)
+        PATHS.main
     ],
     output: {
-        path: path.join(__dirname, config.publicFolder,  config.distFolder),
-        filename: config.bundleFile,
-        publicPath: `/${config.distFolder}/`
+        path: PATHS.dist,
+        filename: '[name].js',
     },
     module: {
         loaders: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -28,16 +41,19 @@ let wpConfig = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebPackPlugin({ 
+            title: 'React Native Starter Kit',
+            template: './src/index.html'
+        })
     ],
     devServer: {
-        contentBase: path.join(__dirname, config.distFolder),
-        publicPath:`/${config.publicFolder}/`,
-        historyApiFallback: true,
-        inline: true,
-        port: config.devPort,
-        hot: true
-    }
+        port: 3000,
+        overlay: {
+            errors: true,
+            warnings: true,
+        }
+    },
 }
 
 module.exports = wpConfig
