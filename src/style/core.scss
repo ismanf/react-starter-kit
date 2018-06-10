@@ -1,0 +1,21 @@
+@import "colors";
+@import "mixins";
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.success-timer-container {
+    @include timer-container;
+
+    h1 {
+        @include header-text($success-color);
+    }
+}
+
+.error-timer-container {
+    @include timer-container;
+
+    h1 {
+        @include header-text($error-color, 30px);
+    }
+}
