@@ -32,11 +32,7 @@ let wpConfig = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'react'],
-                    plugins: ['react-hot-loader/babel', 'transform-class-properties']
-                }
+                loader: 'babel-loader'
             },
         ]
     },
